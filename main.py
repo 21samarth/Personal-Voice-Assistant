@@ -8,6 +8,12 @@ import pyautogui
 import wikipedia
 r = sr.Recognizer()
 
+print("NOTE - START COMMAND WITH JARVIS \nCommads are as follows \n\n 1. place 'DATE' in the voice command to know today date \n2. place 'TIME' in the voice command to know current time\n3. place 'OPEN WITH SOFTWARE NAME' in the voice command to open any software installed in your desktop \n4. place 'SEARCH' in the voice command to search anything on google \n5. place 'EXPLAIN' in the voice command to know about any topic \n6. place 'PLAY' in the voice command to play any song on youtube \n7. place 'SCROLL UP / SCROLL DOWN' in the voice command to move screen up or down \n8. place 'CLOSE' in the voice command to exit the window \n9. place 'STOP' in the voice command to stop the desktop assistant")
+
+
+
+
+
 def wiki(query):
     try:
         # Search Wikipedia for the query
@@ -35,10 +41,6 @@ def wiki(query):
         print("Error:", e)
 
 
-
-
-
-
 def speak(command):
     engine = pyttsx3.init()
     engine.say(command)
@@ -46,21 +48,19 @@ def speak(command):
 def greet():
     x = datetime.datetime.now()
     h = int(x.strftime("%H"))
-    if 3 < h < 12:
+    if 0 <= h <= 4:
+        speak("not a good time to work")
+    if 4<= h < 12:
         speak("Good Morning master")
-    elif 11 < h < 19:
+    elif 11 < h < 16:
         speak("Good AfterNoon Master")
-    elif 18 < h < 22:
+    elif 16 < h < 20:
         speak("Good Evening master")
-    elif 22 < h < 24:
+    elif 19 < h < 24:
         speak("it's late night master")
-    else:
-        speak("not a good time to work byy")
 greet()
 
-  
 softs = [["google","Google Chrome"],["settings","Settings"],["vs code","Code"],["spotify","Spotify"],["chess","3D Chess Game"],["calculator","Calculator"],["calendar","Calendar"],["camera","Camera"],["clock","Clock"],["figma","Figma"],["sublime text","Submlime Text"],["my sql","mysql command line client"],["cmd","command prompt"],["python","pycharm community"],["github","Github Desktop"]] 
-
 while True:
     try:
         with sr.Microphone() as source:
